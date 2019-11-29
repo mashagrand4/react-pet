@@ -2,13 +2,15 @@ import React from 'react';
 import Input from '../common/Input';
 import Button from '../common/Button';
 import youtube from "../../apis/youtube";
+import List from "../common/List";
 
 export default class App extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-           value: null
+           value: null,
+           videos: [],
         };
 
         this.searchByField = this.searchByField.bind(this);
@@ -30,15 +32,22 @@ export default class App extends React.Component {
                 q: this.state.value
             }
         });
-        console.log(response);
+        this.setState({
+            videos: response.data.items,
+        });
     };
 
     render() {
         return (
             <div>
-                <Input update={value => this.updateField(value)}/>
-                <button onClick={this.searchByField}>Search</button>
+                <div>
+                    <Input update={value => this.updateField(value)}/>
+                    <button onClick={this.searchByField}>Search</button>
+                </div>
+                <div>
+                    <List videos={this.state.videos}/>
+                </div>
             </div>
-        );
+        )
     }
 }
