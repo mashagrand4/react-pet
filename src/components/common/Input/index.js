@@ -1,14 +1,13 @@
-
 import React from 'react';
 
 class Input extends React.Component {
-
-    handleChange = event => {
-        this.props.onChange(event.target.value);
-    };
-
     render() {
-        return <input onChange={this.handleChange} />;
+        return (
+            <input
+                placeholder='Search...'
+                onChange={(e) => this.props.update(e.target.value)}
+            />
+        )
     }
 }
 
