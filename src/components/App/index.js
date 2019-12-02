@@ -3,6 +3,7 @@ import Input from '../common/Input';
 import Button from '../common/Button';
 import youtube from "../../apis/youtube";
 import List from "../common/List";
+import './index.scss';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -40,14 +41,19 @@ export default class App extends React.Component {
     render() {
         return (
             <div>
-                <div>
+                <div className='search-bar'>
                     <Input update={value => this.updateField(value)}/>
-                    <button onClick={this.searchByField}>Search</button>
+                    <button className='search-bar__button' onClick={this.searchByField}>Search</button>
                 </div>
-                <div>
-                    <List videos={this.state.videos}/>
-                </div>
+                <List videos={this.state.videos}/>
             </div>
         )
     }
 }
+
+// padding: 0.5rem;
+// // width: 30%;
+// // padding: 0.5rem;
+// // overflow: hidden;
+// // height: 200px;
+// // height: 150px;

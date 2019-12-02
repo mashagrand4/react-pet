@@ -1,0 +1,12 @@
+.search-bar {
+  padding: 1rem;
+  text-align: center;
+  background-color: #dc2626;
+
+  &__button {
+    display: inline-block;
+    padding: 0.7rem;
+    width: 10%;
+    border: 0;
+  }
+}

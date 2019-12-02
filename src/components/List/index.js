@@ -1,5 +1,6 @@
 import React from 'react';
 import Item from "../Item";
+import './index.scss'
 
 export default class List extends React.Component {
     render() {
@@ -7,7 +8,7 @@ export default class List extends React.Component {
             return <Item key={video.id.videoId} video={video}/>
         });
         return (
-            <div>
+            <div className='search-results'>
                 {videoItems}
             </div>
         )
