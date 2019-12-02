@@ -1,9 +1,11 @@
 import React from 'react';
+import styled, { injectGlobal } from 'styled-components';
 import Input from '../common/Input';
-import Button from '../common/Button';
 import youtube from "../../apis/youtube";
-import List from "../common/List";
+import List from "../List";
 import './index.scss';
+import Provider from "react-redux/es/components/Provider";
+import store from "../../store/configureStore";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -40,16 +42,31 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className='search-bar'>
-                    <Input update={value => this.updateField(value)}/>
-                    <button className='search-bar__button' onClick={this.searchByField}>Search</button>
+            <Provider store={store}>
+                <div>
+                    <SearchBar>
+                        <Input update={value => this.updateField(value)}/>
+                        <button className='search-bar__button' onClick={this.searchByField}>Search</button>
+                    </SearchBar>
+                    <List videos={this.state.videos}/>
                 </div>
-                <List videos={this.state.videos}/>
-            </div>
+            </Provider>
         )
     }
 }
+
+const SearchBar = styled.div`
+  padding: 1rem;
+  text-align: center;
+  background-color: #dc2626;
+`;
+
+injectGlobal`
+  body {
+    padding: 0;
+    margin: 0;
+  }
+`;
 
 // padding: 0.5rem;
 // // width: 30%;
