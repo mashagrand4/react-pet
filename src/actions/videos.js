@@ -1,10 +1,10 @@
-import { SEARCH_VIDEOS } from '../constants/videos';
+import { FETCH_VIDEO } from '../constants/videos';
 
-export function searchVideos(text) {
+export default value => {
     return {
-        type: SEARCH_VIDEOS,
+        type: FETCH_VIDEO,
         payload: {
-            text,
+            value,
         }
     }
 }

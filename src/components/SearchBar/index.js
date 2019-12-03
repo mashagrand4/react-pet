@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import Input from '../common/Input';
 import SearchButton from "../SearchButton";
 import styled from 'styled-components';
+import SearchInput from "../SearchInput";
 
 export default class SearchBar extends Component {
     render() {
         return (
             <SearchField>
-                <Input
-                    placeholder={'Search...'}
-                    update={value => this.updateField(value)}/>
+                <SearchInput/>
                 <SearchButton/>
             </SearchField>
         )

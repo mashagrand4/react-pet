@@ -1,1 +1,1 @@
-export const SEARCH_VIDEOS = 'SEARCH_VIDEOS';
+export const FETCH_VIDEO = 'FETCH_VIDEO';

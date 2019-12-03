@@ -1,14 +1,19 @@
-import {SEARCH_VIDEOS} from "../constants/videos";
+import {FETCH_VIDEO} from "../constants/videos";
 
 const initialState = {
-    videos: [],
+    list: [],
+    value: '',
 };
 
 export default (state = initialState, action) => {
-    if (action.type === SEARCH_VIDEOS) {
-        console.log(action);
+    switch (action.type) {
+        case FETCH_VIDEO:
+            return {
+                ...state,
+                value: action.payload.value
+            };
+        default:
+            return state;
     }
-
-    return state;
 }
 

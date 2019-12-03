@@ -1,9 +1,7 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import styled from 'styled-components';
 import youtube from "../../apis/youtube";
 import List from "../List";
-import Provider from "react-redux/es/components/Provider";
-import store from "../../store/configureStore";
 import InfiniteLoader from 'react-infinite-loader'
 import videos from "../../reducers/videos";
 import SearchBar from "../SearchBar";
@@ -62,7 +60,7 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <Provider store={store}>
+            <Fragment>
                 <SearchBar/>
                     {/*<Input update={value => this.updateField(value)}/>*/}
                     {/*<SearchButton onClick={this.searchByField}>Search</SearchButton>*/}
@@ -77,7 +75,7 @@ export default class App extends React.Component {
                             onVisited={ () => this.handleVisit() } />
                         : <EmptySearchList>No videos</EmptySearchList>
                 }
-            </Provider>
+            </Fragment>
         )
     }
 }
