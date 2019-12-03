@@ -1,15 +1,20 @@
 import React from 'react';
-import './index.scss';
+import styled from 'styled-components';
 
-class Input extends React.Component {
+export default class Input extends React.Component {
     render() {
         return (
-            <input
-                placeholder='Search...'
+            <InputField
+                placeholder={this.props.placeholder}
                 onChange={(e) => this.props.update(e.target.value)}
             />
         )
     }
 }
 
-export default Input;
+const InputField = styled.input`
+    padding: 0.7rem;
+    width: 50%;
+    border: 0;
+    border-right: 1px solid #c1c1c1;
+`;

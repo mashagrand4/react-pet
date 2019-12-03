@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
+import styled from "styled-components";
 
-export default class Button extends React.Component {
+export default class Button extends Component {
     render() {
         return (
-            <button>Search</button>
+            <ButtonField>{this.props.name}</ButtonField>
         )
-
     }
 }
+
+const ButtonField = styled.button`
+    display: inline-block;
+    padding: 0.7rem;
+    border: 0;
+`;

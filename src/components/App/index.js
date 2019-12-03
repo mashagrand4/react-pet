@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import Input from '../common/Input';
 import youtube from "../../apis/youtube";
 import List from "../List";
 import Provider from "react-redux/es/components/Provider";
 import store from "../../store/configureStore";
 import InfiniteLoader from 'react-infinite-loader'
 import videos from "../../reducers/videos";
+import SearchBar from "../SearchBar";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -63,32 +63,28 @@ export default class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <div>
-                    <SearchBar>
-                        <Input update={value => this.updateField(value)}/>
-                        <SearchButton onClick={this.searchByField}>Search</SearchButton>
-                    </SearchBar>
-                    <List videos={this.state.videos}/>
-                    <InfiniteLoader
-                        loaderStyle={{
-                            borderLeftColor: '#dc2626',
-                            borderRightColor: '#dc2626'
-                        }}
-                        onVisited={ () => this.handleVisit() } />
-                </div>
+                <SearchBar/>
+                    {/*<Input update={value => this.updateField(value)}/>*/}
+                    {/*<SearchButton onClick={this.searchByField}>Search</SearchButton>*/}
+                <List videos={this.state.videos}/>
+                {
+                    this.state.videos.length ?
+                        <InfiniteLoader
+                            loaderStyle={{
+                                borderLeftColor: '#dc2626',
+                                borderRightColor: '#dc2626'
+                            }}
+                            onVisited={ () => this.handleVisit() } />
+                        : <EmptySearchList>No videos</EmptySearchList>
+                }
             </Provider>
         )
     }
 }
 
-const SearchBar = styled.div`
-    padding: 1rem;
-    text-align: center;
-    background-color: #dc2626;
-`;
-
-const SearchButton = styled.button`
-    display: inline-block;
-    padding: 0.7rem;
-    border: 0;
+const EmptySearchList = styled.div`
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: #9c9c9c;
 `;
