@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import Input from '../common/Input';
 import connect from "react-redux/es/connect/connect";
-import * as actionTypes from "../../constants/videos";
-import fetchVideo from '../../actions/videos';
+import {updateSearchQuery} from '../../actions/search';
 
 class SearchInput extends Component {
     constructor(props) {
@@ -10,11 +9,7 @@ class SearchInput extends Component {
     }
 
     updateField(value) {
-        // console.log('PROOOOPS', this.props);
-        const { fetchVideo } = this.props;
-        console.log(this.props);
-        fetchVideo(value);
-        //this.props.dispatch(fetchVideo(value));
+        this.props.updateSearchQuery(value);
     }
 
 
@@ -41,14 +36,13 @@ class SearchInput extends Component {
 const mapStateToProps = state => {
     console.log(state);
     return {
-        value: state.videos.value,
+        value: state.search.value,
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        // explicitly forwarding arguments
-        fetchVideo: (value) => dispatch(fetchVideo(value)),
+        updateSearchQuery: (value) => dispatch(updateSearchQuery(value)),
     }
 };
 

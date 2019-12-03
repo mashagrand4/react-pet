@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';;
+import styled from 'styled-components';
 
 export default class Item extends React.Component {
     render() {

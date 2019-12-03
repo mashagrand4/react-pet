@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import youtube from "../../apis/youtube";
 import List from "../List";
 import InfiniteLoader from 'react-infinite-loader'
-import videos from "../../reducers/videos";
 import SearchBar from "../SearchBar";
 
 export default class App extends React.Component {
