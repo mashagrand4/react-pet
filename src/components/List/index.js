@@ -1,6 +1,6 @@
 import React from 'react';
 import Item from "../Item";
-import './index.scss'
+import styled from 'styled-components';
 
 export default class List extends React.Component {
     render() {
@@ -8,9 +8,15 @@ export default class List extends React.Component {
             return <Item key={video.id.videoId} video={video}/>
         });
         return (
-            <div className='search-results'>
+            <SearchResults>
                 {videoItems}
-            </div>
+            </SearchResults>
         )
     }
 };
+
+const SearchResults = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+`;

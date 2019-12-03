@@ -1,11 +1,12 @@
 import React from 'react';
-import styled, { injectGlobal } from 'styled-components';
+import styled from 'styled-components';
 import Input from '../common/Input';
 import youtube from "../../apis/youtube";
 import List from "../List";
-import './index.scss';
 import Provider from "react-redux/es/components/Provider";
 import store from "../../store/configureStore";
+import InfiniteLoader from 'react-infinite-loader'
+import videos from "../../reducers/videos";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -14,6 +15,7 @@ export default class App extends React.Component {
         this.state = {
            value: null,
            videos: [],
+           video: null
         };
 
         this.searchByField = this.searchByField.bind(this);
@@ -30,15 +32,24 @@ export default class App extends React.Component {
         const response = await youtube.get('/search', {
             params: {
                 part: 'snippet',
-                maxResults: 5,
+                maxResults: 12,
                 key: 'AIzaSyBuLAVkPg9jKirjQ9IbHme3wz1vv23pp9s',
                 q: this.state.value
             }
         });
         this.setState({
             videos: response.data.items,
+            video: response.data.items[0],
         });
     };
+
+    handleVisit () {
+        let videos = this.state.videos;
+        videos = videos.concat(videos);
+        this.setState({
+            videos,
+        });
+    }
 
     render() {
         return (
@@ -46,9 +57,15 @@ export default class App extends React.Component {
                 <div>
                     <SearchBar>
                         <Input update={value => this.updateField(value)}/>
-                        <button className='search-bar__button' onClick={this.searchByField}>Search</button>
+                        <SearchButton onClick={this.searchByField}>Search</SearchButton>
                     </SearchBar>
                     <List videos={this.state.videos}/>
+                    <InfiniteLoader
+                        loaderStyle={{
+                            ['border-left-color']: '#dc2626',
+                            ['border-right-color']: '#dc2626'
+                        }}
+                        onVisited={ () => this.handleVisit() } />
                 </div>
             </Provider>
         )
@@ -56,21 +73,13 @@ export default class App extends React.Component {
 }
 
 const SearchBar = styled.div`
-  padding: 1rem;
-  text-align: center;
-  background-color: #dc2626;
+    padding: 1rem;
+    text-align: center;
+    background-color: #dc2626;
 `;
 
-injectGlobal`
-  body {
-    padding: 0;
-    margin: 0;
-  }
+const SearchButton = styled.button`
+    display: inline-block;
+    padding: 0.7rem;
+    border: 0;
 `;
-
-// padding: 0.5rem;
-// // width: 30%;
-// // padding: 0.5rem;
-// // overflow: hidden;
-// // height: 200px;
-// // height: 150px;
