@@ -15,7 +15,7 @@ export default class App extends React.Component {
         this.state = {
            value: null,
            videos: [],
-           video: null
+           nextPageToken: null,
         };
 
         this.searchByField = this.searchByField.bind(this);
@@ -37,17 +37,26 @@ export default class App extends React.Component {
                 q: this.state.value
             }
         });
+        console.log(response.data);
         this.setState({
             videos: response.data.items,
-            video: response.data.items[0],
+            nextPageToken: response.data.nextPageToken,
         });
     };
 
-    handleVisit () {
-        let videos = this.state.videos;
-        videos = videos.concat(videos);
+    async handleVisit () {
+        const response = await youtube.get('/search', {
+            params: {
+                part: 'snippet',
+                maxResults: 12,
+                key: 'AIzaSyBuLAVkPg9jKirjQ9IbHme3wz1vv23pp9s',
+                q: this.state.value,
+                pageToken: this.state.nextPageToken,
+            }
+        });
         this.setState({
-            videos,
+            videos: this.state.videos.concat(response.data.items),
+            nextPageToken: response.data.nextPageToken,
         });
     }
 
@@ -62,8 +71,8 @@ export default class App extends React.Component {
                     <List videos={this.state.videos}/>
                     <InfiniteLoader
                         loaderStyle={{
-                            ['border-left-color']: '#dc2626',
-                            ['border-right-color']: '#dc2626'
+                            borderLeftColor: '#dc2626',
+                            borderRightColor: '#dc2626'
                         }}
                         onVisited={ () => this.handleVisit() } />
                 </div>

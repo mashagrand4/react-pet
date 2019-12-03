@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 export default class List extends React.Component {
     render() {
-        const videoItems = this.props.videos.map((video) => {
-            return <Item key={video.id.videoId} video={video}/>
+        const videoItems = this.props.videos.map((video, index) => {
+            return <Item key={index} video={video}/>
         });
         return (
             <SearchResults>
