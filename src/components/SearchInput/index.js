@@ -14,17 +14,11 @@ class SearchInput extends Component {
 
 
     render() {
-        console.log(this.props);
-        const { value } = this.props;
-        console.log(value);
         return (
             <div>
                 <Input
                     placeholder='Search..'
                     update={(value) => this.updateField(value)}/>
-                <div>
-                    {value}
-                </div>
             </div>
 
 
@@ -34,7 +28,6 @@ class SearchInput extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state);
     return {
         value: state.search.value,
     }
