@@ -6,7 +6,7 @@ export default class Input extends React.Component {
         return (
             <InputField
                 placeholder={this.props.placeholder}
-                onChange={(e) => this.props.update(e.target.value)}
+                onChange={(e) => this.props.onChangeHandler(e.target.value)}
             />
         )
     }

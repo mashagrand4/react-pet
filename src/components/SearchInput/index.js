@@ -4,22 +4,16 @@ import connect from "react-redux/es/connect/connect";
 import {updateSearchQuery} from '../../actions/search';
 
 class SearchInput extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     updateField(value) {
         this.props.updateSearchQuery(value);
     }
-
 
     render() {
         return (
             <Input
                 placeholder='Search..'
-                update={(value) => this.updateField(value)}/>
+                onChangeHandler={(value) => this.updateField(value)}/>
         )
-
     }
 }
 

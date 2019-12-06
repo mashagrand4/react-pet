@@ -8,13 +8,12 @@ class SearchButton extends Component {
         return(
             <Button
                 name={'Search'}
-                fetch={(value) => this.props.fetchVideo(value)}/>
+                onClickHandler={(value) => this.props.fetchVideo(value)}/>
         )
     }
 }
 
 const mapStateToProps = state => {
-    console.log('GETSTATEINBUTTON', state.search);
     return {
         value: state.search.value,
         list: state.search.list,

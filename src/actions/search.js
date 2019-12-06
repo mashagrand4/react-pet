@@ -1,5 +1,5 @@
 import { FETCH_VIDEO, UPDATE_SEARCH_QUERY } from '../constants/search';
-import youtube from '../apis/youtube';
+import {youtube, params} from '../apis/youtube';
 
 export function updateSearchQuery(value) {
     return {
@@ -24,10 +24,8 @@ export function asyncFetchVideo(value) {
     return function (dispatch) {
         youtube.get('/search', {
             params: {
-                part: 'snippet',
-                maxResults: 12,
-                key: 'AIzaSyBuLAVkPg9jKirjQ9IbHme3wz1vv23pp9s',
-                q: value
+                ...params,
+                q: value,
             }
         }).then((response, error) => {
             dispatch(fetchVideo({
