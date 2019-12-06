@@ -10,11 +10,10 @@ export function updateSearchQuery(value) {
     }
 }
 
-export function fetchVideo({value, list, nextPageToken}) {
+export function fetchVideo({list, nextPageToken}) {
     return {
         type: FETCH_VIDEO,
         payload: {
-            value,
             list,
             nextPageToken
         }

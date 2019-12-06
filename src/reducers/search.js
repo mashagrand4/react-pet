@@ -12,7 +12,6 @@ export default (state = initialState, action) => {
         case FETCH_VIDEO:
             return {
                 ...state,
-                value: action.payload.value,
                 list: action.payload.list,
                 nextPageToken: action.payload.nextPageToken
             };

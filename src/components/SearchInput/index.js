@@ -15,13 +15,9 @@ class SearchInput extends Component {
 
     render() {
         return (
-            <div>
-                <Input
-                    placeholder='Search..'
-                    update={(value) => this.updateField(value)}/>
-            </div>
-
-
+            <Input
+                placeholder='Search..'
+                update={(value) => this.updateField(value)}/>
         )
 
     }
