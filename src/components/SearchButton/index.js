@@ -4,11 +4,21 @@ import { asyncFetchVideo } from "../../actions/search";
 import connect from "react-redux/es/connect/connect";
 
 class SearchButton extends Component {
+    constructor(props) {
+        super(props);
+        this.fetchVideoHandler = this.fetchVideoHandler.bind(this);
+    }
+
+    fetchVideoHandler() {
+        this.props.fetchVideo(this.props.value);
+    }
+
+
     render() {
         return(
             <Button
                 name={'Search'}
-                onClickHandler={(value) => this.props.fetchVideo(value)}/>
+                onClickHandler={this.fetchVideoHandler}/>
         )
     }
 }
@@ -23,7 +33,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchVideo: (value) => asyncFetchVideo(value)(dispatch),
+        fetchVideo: (value) =>  {
+            console.log('before sending to action thunk', value);
+            return asyncFetchVideo(value)(dispatch);
+        }
     }
 };
 

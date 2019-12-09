@@ -1,7 +1,7 @@
 import { FETCH_VIDEO, UPDATE_SEARCH_QUERY } from '../constants/search';
 import {youtube, params} from '../apis/youtube';
 
-export function updateSearchQuery(value) {
+export const updateSearchQuery = (value) => {
     return {
         type: UPDATE_SEARCH_QUERY,
         payload: {
@@ -10,7 +10,7 @@ export function updateSearchQuery(value) {
     }
 }
 
-export function fetchVideo({list, nextPageToken}) {
+export const fetchVideo = ({list, nextPageToken}) => {
     return {
         type: FETCH_VIDEO,
         payload: {
@@ -20,8 +20,8 @@ export function fetchVideo({list, nextPageToken}) {
     }
 }
 
-export function asyncFetchVideo(value) {
-    return function (dispatch) {
+export const asyncFetchVideo = (value) => {
+    return (dispatch) => {
         youtube.get('/search', {
             params: {
                 ...params,
