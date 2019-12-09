@@ -7,6 +7,12 @@ export default class Input extends React.Component {
             <InputField
                 placeholder={this.props.placeholder}
                 onChange={(e) => this.props.onChangeHandler(e.target.value)}
+                onKeyPress={(e) => {
+                    if(e.key === "Enter") {
+                        return this.props.onKeyPressHandler(e.target.value)
+                    }
+                }
+                }
             />
         )
     }

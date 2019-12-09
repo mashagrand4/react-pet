@@ -3,7 +3,7 @@ import axios from 'axios';
 export const params = {
     part: 'snippet',
     maxResults: 12,
-    key: 'AIzaSyBuLAVkPg9jKirjQ9IbHme3wz1vv23pp9s',
+    key: 'AIzaSyD8a-SC61GaTYfoWeq59uyeQRosGubgKHg',
 };
 
 export const youtube = axios.create({

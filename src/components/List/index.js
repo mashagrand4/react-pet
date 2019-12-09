@@ -3,10 +3,11 @@ import Item from "../Item";
 import styled from 'styled-components';
 import InfiniteLoader from "react-infinite-loader";
 import connect from "react-redux/es/connect/connect";
-import {asyncFetchVideo} from "../../actions/search";
+import {fetchItems} from "../../actions/search";
 
 class List extends Component {
     handleVisit = () => {
+        console.log('infinite scroll func');
         this.props.fetchVideo(this.props);
     };
 
@@ -38,17 +39,13 @@ class List extends Component {
 
 const mapStateToProps = state => {
     return {
-        list: state.search.list,
-        nextPageToken: state.search.nextPageToken,
-        value: state.search.value,
+        ...state.search
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchVideo: ({value, list, nextPageToken}) =>  {
-            return asyncFetchVideo({value, list, nextPageToken})(dispatch);
-        }
+        fetchVideo: ({value, list, nextPageToken}) => dispatch(fetchItems({value, list, nextPageToken})),
     }
 };
 
