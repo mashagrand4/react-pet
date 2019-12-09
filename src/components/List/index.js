@@ -7,7 +7,6 @@ import {fetchItems} from "../../actions/search";
 
 class List extends Component {
     handleVisit = () => {
-        console.log('infinite scroll func');
         this.props.fetchVideo(this.props);
     };
 

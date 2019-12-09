@@ -17,22 +17,3 @@ export const fetchItems = (state) => {
         }
     }
 };
-
-// export const asyncFetchVideo = ({value, list, nextPageToken}) => {
-//     return (dispatch) => {
-//         youtube.get('/search', {
-//             params: {
-//                 ...params,
-//                 q: value,
-//                 pageToken: nextPageToken,
-//             }
-//         }).then((response, error) => {
-//             dispatch(fetchVideo({
-//                     value: value,
-//                     list: list.concat(response.data.items),
-//                     nextPageToken: response.data.nextPageToken,
-//                 }
-//             ))
-//         });
-//     }
-// };

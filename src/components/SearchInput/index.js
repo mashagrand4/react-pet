@@ -5,7 +5,6 @@ import {updateSearchQuery, fetchItems} from '../../actions/search';
 
 class SearchInput extends Component {
     updateField(value) {
-        console.log('update', value);
         this.props.updateSearchQuery(value);
     }
 

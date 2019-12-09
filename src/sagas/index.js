@@ -10,24 +10,17 @@ const fetchData = async({value, nextPageToken}) => {
             pageToken: nextPageToken,
         },
     });
-    return await result.data.items;
+    return await result.data;
 };
 
 function* fetchVideoAsync(action) {
     console.log('sagas', action);
     try {
-        const videos = yield call(fetchData, action.payload);
-        // });.then((response, error) => {
-        //     dispatch(fetchVideo({
-        //             value: value,
-        //             list: list.concat(response.data.items),
-        //             nextPageToken: response.data.nextPageToken,
-        //         }
-        //     ))
-        // }));
+        const data = yield call(fetchData, action.payload);
         yield put(fetchItems({
             ...action.payload,
-            list: videos.items,
+            list: action.payload.list.concat(data.items),
+            nextPageToken: data.pageToken
         }));
     } catch(e) {
         yield put({type: action.type, list: []})
