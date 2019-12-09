@@ -3,8 +3,13 @@ import Item from "../Item";
 import styled from 'styled-components';
 import InfiniteLoader from "react-infinite-loader";
 import connect from "react-redux/es/connect/connect";
+import {asyncFetchVideo} from "../../actions/search";
 
 class List extends Component {
+    handleVisit = () => {
+        this.props.fetchVideo(this.props);
+    };
+
     render() {
         const videoItems = this.props.list.map((video, index) => {
             return <Item key={index} video={video}/>
@@ -14,22 +19,24 @@ class List extends Component {
                 <SearchResults>
                     {videoItems}
                 </SearchResults>
-
-                {/*<InfiniteLoader*/}
-                    {/*loaderStyle={{*/}
-                        {/*borderLeftColor: '#dc2626',*/}
-                        {/*borderRightColor: '#dc2626'*/}
-                    {/*}}*/}
-                    {/*onVisited={ () => this.handleVisit() } />*/}
+                {
+                    this.props.list.length
+                        ?
+                        <InfiniteLoader
+                            loaderStyle={{
+                                borderLeftColor: '#dc2626',
+                                borderRightColor: '#dc2626'
+                            }}
+                            onVisited={() => this.handleVisit()}/>
+                        :
+                        <EmptySearchList>No videos</EmptySearchList>
+                }
             </Fragment>
-
-
         )
     }
 };
 
 const mapStateToProps = state => {
-    console.log(state);
     return {
         list: state.search.list,
         nextPageToken: state.search.nextPageToken,
@@ -37,13 +44,15 @@ const mapStateToProps = state => {
     }
 };
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         fetchVideo: ({value, videos, nextPageToken}) => asyncFetchVideo({value, videos, nextPageToken})(dispatch),
-//     }
-// };
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchVideo: ({value, list, nextPageToken}) =>  {
+            return asyncFetchVideo({value, list, nextPageToken})(dispatch);
+        }
+    }
+};
 
-export default connect(mapStateToProps)(List);
+export default connect(mapStateToProps, mapDispatchToProps)(List);
 
 const SearchResults = styled.div`
     display: flex;

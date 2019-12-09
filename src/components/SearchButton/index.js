@@ -10,9 +10,8 @@ class SearchButton extends Component {
     }
 
     fetchVideoHandler() {
-        this.props.fetchVideo(this.props.value);
+        this.props.fetchVideo(this.props);
     }
-
 
     render() {
         return(
@@ -33,9 +32,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchVideo: (value) =>  {
-            console.log('before sending to action thunk', value);
-            return asyncFetchVideo(value)(dispatch);
+        fetchVideo: ({value, list, nextPageToken}) =>  {
+            return asyncFetchVideo({value, list, nextPageToken})(dispatch);
         }
     }
 };

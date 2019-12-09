@@ -20,17 +20,19 @@ export const fetchVideo = ({list, nextPageToken}) => {
     }
 }
 
-export const asyncFetchVideo = (value) => {
+export const asyncFetchVideo = ({value, list, nextPageToken}) => {
+    console.log(list);
     return (dispatch) => {
         youtube.get('/search', {
             params: {
                 ...params,
                 q: value,
+                pageToken: nextPageToken,
             }
         }).then((response, error) => {
             dispatch(fetchVideo({
                     value: value,
-                    list: response.data.items,
+                    list: list.concat(response.data.items),
                     nextPageToken: response.data.nextPageToken,
                 }
             ))
