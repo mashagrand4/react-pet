@@ -6,6 +6,7 @@ import {bindActionCreators} from "redux";
 
 class SearchInput extends Component {
     updateField(value) {
+        const { updateSearchQuery } = this.props;
         updateSearchQuery(value);
     }
 
@@ -25,9 +26,5 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({ updateSearchQuery, fetchItems }, dispatch);
-    // return {
-    //     updateSearchQuery: (value) => dispatch(updateSearchQuery(value)),
-    //     fetchVideo: ({value, list, nextPageToken}) => dispatch(fetchItems({value, list, nextPageToken}))
-    // };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchInput);

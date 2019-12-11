@@ -1,24 +1,34 @@
-import { FETCH_VIDEO, UPDATE_SEARCH_QUERY } from '../constants/actionTypes';
+import { FETCH_VIDEO, UPDATE_SEARCH_QUERY, UPDATE_LIST } from '../constants/actionTypes';
 
-export const updateSearchQuery = (value) => {
-    console.log('action querry');
-    return (dispatch) => {
-        dispatch({
-            type: UPDATE_SEARCH_QUERY,
-            payload: {
-                value
-            }
-        });
+export const updateList = (list, nextPageToken) => {
+    console.log('action update', list);
+    return {
+        type: UPDATE_LIST,
+        payload: {
+            list,
+            nextPageToken
+        }
     }
 };
 
-export const fetchItems = (state) => {
-    console.log('action fetch');
+export const updateSearchQuery = (value) => {
+    //console.log('action query');
+    return {
+        type: UPDATE_SEARCH_QUERY,
+        payload: {
+            value
+        }
+    }
+};
+
+export const fetchItems = (value, nextPageToken) => {
+    console.log('action fetch', value, nextPageToken);
     return (dispatch) => {
         dispatch({
-            type: 'FETCH_VIDEO_ASYNC',
+            type: FETCH_VIDEO,
             payload: {
-                ...state
+                value,
+                nextPageToken
             }
         });
     };

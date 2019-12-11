@@ -5,13 +5,10 @@ import connect from "react-redux/es/connect/connect";
 import {bindActionCreators} from "redux";
 
 class SearchButton extends Component {
-    constructor(props) {
-        super(props);
-        console.log(props);
-    }
-
     fetchVideoHandler = () => {
-        this.props.fetchItems(this.props);
+        console.log(this.props);
+        const { fetchItems, value, nextPageToken } = this.props;
+        fetchItems(value, nextPageToken);
     };
 
     render() {

@@ -1,4 +1,4 @@
-import {FETCH_VIDEO, UPDATE_SEARCH_QUERY} from "../constants/actionTypes";
+import {FETCH_VIDEO, UPDATE_LIST, UPDATE_SEARCH_QUERY} from "../constants/actionTypes";
 
 const initialState = {
     list: [],
@@ -7,9 +7,14 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-    console.log('reducer', action);
     switch (action.type) {
         case FETCH_VIDEO:
+            console.log('reducer', action);
+            return {
+                ...state,
+                //nextPageToken: action.payload.nextPageToken
+            };
+        case UPDATE_LIST:
             return {
                 ...state,
                 list: action.payload.list,

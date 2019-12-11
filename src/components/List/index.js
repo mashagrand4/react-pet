@@ -3,11 +3,13 @@ import Item from "../Item";
 import styled from 'styled-components';
 import InfiniteLoader from "react-infinite-loader";
 import connect from "react-redux/es/connect/connect";
-import {fetchItems} from "../../actions/search";
+import {fetchItems, updateSearchQuery} from "../../actions/search";
+import {bindActionCreators} from "redux";
 
 class List extends Component {
     handleVisit = () => {
-        this.props.fetchVideo(this.props);
+        const { fetchItems, nextPageToken } = this.props;
+        fetchItems(nextPageToken);
     };
 
     render() {
@@ -42,11 +44,7 @@ const mapStateToProps = state => {
     }
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchVideo: ({value, list, nextPageToken}) => dispatch(fetchItems({value, list, nextPageToken})),
-    }
-};
+const mapDispatchToProps = dispatch => bindActionCreators({ updateSearchQuery, fetchItems }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);
 
