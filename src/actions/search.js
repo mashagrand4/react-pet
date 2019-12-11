@@ -12,7 +12,6 @@ export const updateList = (list, nextPageToken) => {
 };
 
 export const updateSearchQuery = (value) => {
-    //console.log('action query');
     return {
         type: UPDATE_SEARCH_QUERY,
         payload: {
