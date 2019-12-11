@@ -12,12 +12,11 @@ export default (state = initialState, action) => {
             console.log('reducer', action);
             return {
                 ...state,
-                //nextPageToken: action.payload.nextPageToken
             };
         case UPDATE_LIST:
             return {
                 ...state,
-                list: action.payload.list,
+                list: state.list.concat(action.payload.list),
                 nextPageToken: action.payload.nextPageToken
             };
         case UPDATE_SEARCH_QUERY:

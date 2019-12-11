@@ -8,8 +8,8 @@ import {bindActionCreators} from "redux";
 
 class List extends Component {
     handleVisit = () => {
-        const { fetchItems, nextPageToken } = this.props;
-        fetchItems(nextPageToken);
+        const { fetchItems, nextPageToken, value } = this.props;
+        fetchItems(value, nextPageToken);
     };
 
     render() {

@@ -2,12 +2,12 @@ import {call, put, takeEvery} from 'redux-saga/effects';
 import {params, youtube} from '../apis/youtube';
 import {updateList} from "../actions/search";
 
-const fetchData = async({value}) => {
+const fetchData = async({value, nextPageToken}) => {
     const result = await youtube.get('/search', {
         params: {
             ...params,
             q: value,
-            //pageToken: nextPageToken,
+            pageToken: nextPageToken,
         },
     });
     return await result.data;
