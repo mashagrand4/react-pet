@@ -1,3 +1,0 @@
-export const FETCH_VIDEO = 'FETCH_VIDEO';
-export const UPDATE_SEARCH_QUERY = 'UPDATE_SEARCH_QUERY';
-export const UPDATE_LIST = 'UPDATE_LIST';
