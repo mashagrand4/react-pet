@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-export default class Item extends React.Component {
+export default class VideoItem extends React.Component {
     render() {
         const href = "https://www.youtube.com/watch?v=" + this.props.video.id;
         return (
@@ -23,7 +23,7 @@ export default class Item extends React.Component {
     }
 }
 
-Item.propTypes = {
+VideoItem.propTypes = {
     video: PropTypes.object,
 };
 

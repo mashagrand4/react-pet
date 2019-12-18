@@ -3,9 +3,7 @@ import React from "react";
 
 export const Button = ({name, onClickHandler}) => {
     return (
-        <ButtonField onClick={(e) => {
-            console.log('button', e);
-            return onClickHandler(e.target.value)}}>
+        <ButtonField onClick={(e) => onClickHandler(e.target.value)}>
             {name}
         </ButtonField>
     )

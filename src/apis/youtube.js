@@ -8,8 +8,10 @@ const params = {
 
 const getSearchDataMapping = (data) => {
     return data.map((item) => {
+        console.log(item);
         return {
-            id: item.id.videoId || item.id.channelId,
+            id: item.id.videoId || item.id.channelId || item.id.playlistId,
+            kind: item.id.kind,
             title: item.snippet.title,
             channelId: item.snippet.channelId,
             channelTitle: item.snippet.channelTitle,
@@ -33,27 +35,6 @@ export default class YoutubeApi {
                     ...params,
                     q: value,
                     pageToken: nextPageToken,
-                    type: 'video',
-                },
-            });
-            return {
-                items: getSearchDataMapping(result.data.items),
-                nextPageToken: result.data.nextPageToken
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    static async searchChannels({value, nextPageToken}) {
-        try {
-            const result = await axios.get('/search', {
-                baseURL: 'https://www.googleapis.com/youtube/v3',
-                params: {
-                    ...params,
-                    q: value,
-                    pageToken: nextPageToken,
-                    type: 'channel',
                 },
             });
             return {
@@ -75,9 +56,6 @@ export default class YoutubeApi {
                     id: ids.join(','),
                 },
             });
-
-            console.log(result);
-
             return result.data.items.map((item) => {
                 return {
                     id: item.id,

@@ -1,5 +1,5 @@
 import React, {Fragment, Component} from 'react';
-import Item from "./Item";
+import VideoItem from "./VideoItem";
 import styled from 'styled-components';
 import InfiniteLoader from "react-infinite-loader";
 import connect from "react-redux/es/connect/connect";
@@ -14,7 +14,7 @@ class List extends Component {
 
     render() {
         const videoItems = this.props.list.map((video, index) => {
-            return <Item key={index} video={video}/>
+            return <VideoItem key={index} video={video}/>
         });
         return (
             <Fragment>

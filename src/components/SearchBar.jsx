@@ -20,7 +20,6 @@ class SearchBar extends Component {
     render() {
         return (
             <SearchField onKeyPress={(event) => {
-                console.log(event);
                 if (event.key === "Enter") {
                     this.fetchVideoHandler();
                 }

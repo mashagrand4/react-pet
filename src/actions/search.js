@@ -1,4 +1,4 @@
-import {FETCH_VIDEO, UPDATE_SEARCH_QUERY, UPDATE_LIST, FETCH_RATING, UPDATE_RATING} from '../constants/actionTypes';
+import {FETCH_VIDEO, UPDATE_SEARCH_QUERY, UPDATE_LIST} from '../constants/actionTypes';
 
 export const updateList = (list, nextPageToken) => {
     return {
@@ -6,15 +6,6 @@ export const updateList = (list, nextPageToken) => {
         payload: {
             list,
             nextPageToken
-        }
-    }
-};
-
-export const updateRating = (idsList) => {
-    return {
-        type: UPDATE_RATING,
-        payload: {
-            idsList
         }
     }
 };
@@ -35,17 +26,6 @@ export const fetchItems = (value, nextPageToken) => {
             payload: {
                 value,
                 nextPageToken
-            }
-        });
-    };
-};
-
-export const fetchRating = (list) => {
-    return (dispatch) => {
-        dispatch({
-            type: FETCH_RATING,
-            payload: {
-                list,
             }
         });
     };
