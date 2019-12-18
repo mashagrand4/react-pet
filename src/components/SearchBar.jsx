@@ -8,8 +8,9 @@ import { fetchItems, updateSearchQuery } from '../actions/search';
 
 class SearchBar extends Component {
   fetchVideoHandler = () => {
-    const { fetchItems, value, nextPageToken } = this.props;
+    const { fetchItems, updateSearchQuery, value, nextPageToken } = this.props;
     fetchItems(value, nextPageToken);
+    updateSearchQuery('');
   };
 
   updateField(value) {
@@ -26,7 +27,7 @@ class SearchBar extends Component {
           }
         }}
       >
-        <SearchInput updateField={value => this.updateField(value)} />
+        <SearchInput value={this.props.value} updateField={value => this.updateField(value)} />
         <SearchButton fetchVideo={this.fetchVideoHandler} />
       </SearchField>
     );
