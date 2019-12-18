@@ -4,20 +4,15 @@ import PropTypes from 'prop-types';
 
 export default class ChannelItem extends React.Component {
   render() {
-    const href = `https://www.youtube.com/watch?v=${  this.props.video.id}`;
+    const href = `https://www.youtube.com/channel/${this.props.channel.id}`;
     return (
       <ItemWrapper>
         <a href={href} target="_blank">
-          <ItemPicture src={this.props.video.image.url} />
+          <ItemPicture src={this.props.channel.image.url} />
         </a>
-        <div>{this.props.video.title}</div>
-        <div>{this.props.video.description}</div>
-        <div>{this.props.video.publishedAt}</div>
-        <div>{this.props.video.statistics.viewCount}</div>
-        <div>{this.props.video.statistics.likeCount}</div>
-        <div>{this.props.video.statistics.dislikeCount}</div>
-        <div>{this.props.video.statistics.favoriteCount}</div>
-        <div>{this.props.video.statistics.commentCount}</div>
+        <div>{this.props.channel.title}</div>
+        <div>{this.props.channel.description}</div>
+        <div>{this.props.channel.publishedAt}</div>
       </ItemWrapper>
     );
   }
@@ -46,7 +41,9 @@ const ItemWrapper = styled.div`
 `;
 
 const ItemPicture = styled.img`
-  width: 100%;
+  width: 60%;
   display: block;
   margin: 0 auto;
+  border-radius: 50%;
+  padding: 1rem;
 `;

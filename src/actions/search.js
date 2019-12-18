@@ -1,4 +1,4 @@
-import { FETCH_VIDEO, UPDATE_SEARCH_QUERY, UPDATE_LIST } from '../constants/actionTypes';
+import { FETCH_VIDEO, UPDATE_SEARCH_QUERY, UPDATE_LIST, FETCH_MORE_VIDEO } from '../constants/actionTypes';
 
 export const updateList = (list, nextPageToken) => {
   return {
@@ -16,6 +16,18 @@ export const updateSearchQuery = value => {
     payload: {
       value,
     },
+  };
+};
+
+export const fetchMoreItems = (value, nextPageToken) => {
+  return dispatch => {
+    dispatch({
+      type: FETCH_MORE_VIDEO,
+      payload: {
+        value,
+        nextPageToken,
+      },
+    });
   };
 };
 

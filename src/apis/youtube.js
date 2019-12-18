@@ -8,7 +8,6 @@ const params = {
 
 const getSearchDataMapping = data => {
   return data.map(item => {
-    console.log(item);
     return {
       id: item.id.videoId || item.id.channelId || item.id.playlistId,
       kind: item.id.kind,

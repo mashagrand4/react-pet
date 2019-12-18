@@ -1,4 +1,4 @@
-import { FETCH_VIDEO, UPDATE_LIST, UPDATE_SEARCH_QUERY } from '../constants/actionTypes';
+import {FETCH_MORE_VIDEO, FETCH_VIDEO, UPDATE_LIST, UPDATE_SEARCH_QUERY} from '../constants/actionTypes';
 
 const initialState = {
   list: [],
@@ -12,11 +12,23 @@ export default (state = initialState, action) => {
       return {
         ...state,
       };
+    case FETCH_MORE_VIDEO:
+      console.log('fetch more video');
+      return {
+        ...state,
+      };
+    case 'ADD_VIDEO':
+      console.log('ADD more video');
+      console.log(action);
+      return {
+        ...state,
+        list: action.payload.list,
+        nextPageToken: action.payload.nextPageToken,
+      };
     case UPDATE_LIST:
       return {
         ...state,
         list: state.list.concat(action.payload.list),
-        nextPageToken: action.payload.nextPageToken,
       };
     case UPDATE_SEARCH_QUERY:
       return {
