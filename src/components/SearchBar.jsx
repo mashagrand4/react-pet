@@ -7,14 +7,20 @@ import { SearchInput } from './SearchInput';
 import { fetchItems, updateSearchQuery } from '../actions/search';
 
 class SearchBar extends Component {
+  constructor(props) {
+    super(props);
+    this.value = '';
+  }
+
   fetchVideoHandler = () => {
-    const { fetchItems, updateSearchQuery, value, nextPageToken } = this.props;
+    const { fetchItems, value, nextPageToken } = this.props;
     fetchItems(value, nextPageToken);
-    updateSearchQuery('');
+    this.value = '';
   };
 
   updateField(value) {
     const { updateSearchQuery } = this.props;
+    this.value = value;
     updateSearchQuery(value);
   }
 
@@ -27,7 +33,7 @@ class SearchBar extends Component {
           }
         }}
       >
-        <SearchInput value={this.props.value} updateField={value => this.updateField(value)} />
+        <SearchInput value={this.value} updateField={value => this.updateField(value)} />
         <SearchButton fetchVideo={this.fetchVideoHandler} />
       </SearchField>
     );
