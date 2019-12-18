@@ -1,9 +1,9 @@
 import React, {Fragment, Component} from 'react';
-import Item from "../Item";
+import Item from "./Item";
 import styled from 'styled-components';
 import InfiniteLoader from "react-infinite-loader";
 import connect from "react-redux/es/connect/connect";
-import {fetchItems, updateSearchQuery} from "../../actions/search";
+import {fetchItems, updateSearchQuery} from "../actions/search";
 import {bindActionCreators} from "redux";
 
 class List extends Component {
@@ -36,9 +36,10 @@ class List extends Component {
             </Fragment>
         )
     }
-};
+}
 
 const mapStateToProps = state => {
+    console.log(state.search);
     return {
         ...state.search
     }

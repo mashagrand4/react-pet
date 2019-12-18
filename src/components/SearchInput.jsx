@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Input from '../common/Input';
+import {Input} from './common/Input';
 import connect from "react-redux/es/connect/connect";
-import {updateSearchQuery, fetchItems} from '../../actions/search';
+import {updateSearchQuery, fetchItems} from '../actions/search';
 import {bindActionCreators} from "redux";
 
 class SearchInput extends Component {

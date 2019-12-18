@@ -1,3 +1,6 @@
 export const FETCH_VIDEO = 'FETCH_VIDEO';
+export const FETCH_CHANNELS = 'FETCH_CHANNELS';
 export const UPDATE_SEARCH_QUERY = 'UPDATE_SEARCH_QUERY';
 export const UPDATE_LIST = 'UPDATE_LIST';
+export const FETCH_RATING = 'FETCH_RATING';
+export const UPDATE_RATING = 'UPDATE_RATING';

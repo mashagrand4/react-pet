@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Button from '../common/Button';
-import {fetchItems, updateSearchQuery} from "../../actions/search";
+import {Button} from './common/Button';
+import {fetchItems, updateSearchQuery} from "../actions/search";
 import connect from "react-redux/es/connect/connect";
 import {bindActionCreators} from "redux";
 

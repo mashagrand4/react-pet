@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import SearchButton from "../SearchButton";
+import SearchButton from "./SearchButton";
 import styled from 'styled-components';
-import SearchInput from "../SearchInput";
-import {fetchItems} from "../../actions/search";
+import SearchInput from "./SearchInput";
+import {fetchItems} from "../actions/search";
 
 export default class SearchBar extends Component {
     fetchVideoHandler = (event) => {
