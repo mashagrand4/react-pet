@@ -1,4 +1,8 @@
-import { FETCH_VIDEO, UPDATE_SEARCH_QUERY, UPDATE_LIST, FETCH_MORE_VIDEO } from '../constants/actionTypes';
+import {
+  FETCH_VIDEO,
+  UPDATE_SEARCH_QUERY,
+  UPDATE_LIST,
+  FETCH_MORE_VIDEO } from '../constants/actionTypes';
 
 export const updateList = (list, nextPageToken) => {
   return {

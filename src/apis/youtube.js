@@ -41,7 +41,7 @@ export default class YoutubeApi {
         nextPageToken: result.data.nextPageToken,
       };
     } catch (error) {
-      console.log(error);
+      return null;
     }
   }
 
@@ -62,7 +62,7 @@ export default class YoutubeApi {
         };
       });
     } catch (error) {
-      console.log(error);
+      return null;
     }
   }
 }

@@ -2,29 +2,47 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-export default class VideoItem extends React.Component {
-  render() {
-    const href = `https://www.youtube.com/watch?v=${  this.props.video.id}`;
-    return (
-      <ItemWrapper>
-        <a href={href} target="_blank">
-          <ItemPicture src={this.props.video.image.url} />
-        </a>
-        <div>{this.props.video.title}</div>
-        <div>{this.props.video.description}</div>
-        <div>{this.props.video.publishedAt}</div>
-        <div>{this.props.video.statistics.viewCount}</div>
-        <div>{this.props.video.statistics.likeCount}</div>
-        <div>{this.props.video.statistics.dislikeCount}</div>
-        <div>{this.props.video.statistics.favoriteCount}</div>
-        <div>{this.props.video.statistics.commentCount}</div>
-      </ItemWrapper>
-    );
-  }
-}
+const VideoItem = (props) => {
+  const { video } = props;
+  const href = `https://www.youtube.com/watch?v=${video.id}`;
+  return (
+    <ItemWrapper>
+      <a href={href} target="_blank" rel="noopener noreferrer">
+        <ItemPicture src={video.image.url} />
+      </a>
+      <div>{video.title}</div>
+      <div>{video.description}</div>
+      <div>{video.publishedAt}</div>
+      <div>{video.statistics.viewCount}</div>
+      <div>{video.statistics.likeCount}</div>
+      <div>{video.statistics.dislikeCount}</div>
+      <div>{video.statistics.favoriteCount}</div>
+      <div>{video.statistics.commentCount}</div>
+    </ItemWrapper>
+  );
+};
 
 VideoItem.propTypes = {
-  video: PropTypes.object,
+  video: PropTypes.shape({
+    id: PropTypes.string,
+    image: PropTypes.shape({
+      url: PropTypes.string,
+    }),
+    title: PropTypes.string,
+    description: PropTypes.string,
+    publishedAt: PropTypes.string,
+    statistics: PropTypes.shape({
+      viewCount: PropTypes.number,
+      likeCount: PropTypes.number,
+      dislikeCount: PropTypes.number,
+      favoriteCount: PropTypes.number,
+      commentCount: PropTypes.number,
+    }),
+  }),
+};
+
+VideoItem.defaultProps = {
+  video: {},
 };
 
 const ItemWrapper = styled.div`

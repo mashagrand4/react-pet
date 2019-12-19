@@ -2,24 +2,34 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-export default class ChannelItem extends React.Component {
-  render() {
-    const href = `https://www.youtube.com/channel/${this.props.channel.id}`;
-    return (
-      <ItemWrapper>
-        <a href={href} target="_blank">
-          <ItemPicture src={this.props.channel.image.url} />
-        </a>
-        <div>{this.props.channel.title}</div>
-        <div>{this.props.channel.description}</div>
-        <div>{this.props.channel.publishedAt}</div>
-      </ItemWrapper>
-    );
-  }
-}
+const ChannelItem = ({channel}) => {
+  const href = `https://www.youtube.com/channel/${channel.id}`;
+  return (
+    <ItemWrapper>
+      <a href={href} target="_blank" rel="noopener noreferrer">
+        <ItemPicture src={channel.image.url} />
+      </a>
+      <div>{channel.title}</div>
+      <div>{channel.description}</div>
+      <div>{channel.publishedAt}</div>
+    </ItemWrapper>
+  );
+};
 
 ChannelItem.propTypes = {
-  video: PropTypes.object,
+  channel: PropTypes.shape({
+    id: PropTypes.string,
+    image: PropTypes.shape({
+      url: PropTypes.string,
+    }),
+    title: PropTypes.string,
+    description: PropTypes.string,
+    publishedAt: PropTypes.string,
+  }),
+};
+
+ChannelItem.defaultProps = {
+  channel: {},
 };
 
 const ItemWrapper = styled.div`
@@ -47,3 +57,5 @@ const ItemPicture = styled.img`
   border-radius: 50%;
   padding: 1rem;
 `;
+
+export default ChannelItem;

@@ -2,25 +2,19 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { bindActionCreators } from 'redux';
 import connect from 'react-redux/es/connect/connect';
-import { SearchButton } from './SearchButton';
-import { SearchInput } from './SearchInput';
-import { fetchItems, updateSearchQuery } from '../actions/search';
+import PropTypes from "prop-types";
+import SearchButton from './SearchButton';
+import SearchInput from './SearchInput';
+import * as actions from '../actions/search';
 
 class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-    this.value = '';
-  }
-
   fetchVideoHandler = () => {
     const { fetchItems, value, nextPageToken } = this.props;
     fetchItems(value, nextPageToken);
-    this.value = '';
   };
 
   updateField(value) {
     const { updateSearchQuery } = this.props;
-    this.value = value;
     updateSearchQuery(value);
   }
 
@@ -33,12 +27,26 @@ class SearchBar extends Component {
           }
         }}
       >
-        <SearchInput value={this.value} updateField={value => this.updateField(value)} />
+        <SearchInput updateField={value => this.updateField(value)} />
         <SearchButton fetchVideo={this.fetchVideoHandler} />
       </SearchField>
     );
   }
 }
+
+SearchBar.propTypes = {
+  value: PropTypes.string,
+  nextPageToken: PropTypes.string,
+  fetchItems: PropTypes.func,
+  updateSearchQuery: PropTypes.func,
+};
+
+SearchBar.defaultProps = {
+  value: '',
+  nextPageToken:'',
+  fetchItems: null,
+  updateSearchQuery: null,
+};
 
 const SearchField = styled.div`
   padding: 1rem;
@@ -53,6 +61,6 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ updateSearchQuery, fetchItems }, dispatch);
+  bindActionCreators(actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

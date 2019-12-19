@@ -1,17 +1,16 @@
-import React, { Fragment, Component } from 'react';
-// import {Switch, Route, Link} from 'react-router-dom';
+import React from 'react';
 import SearchBar from './SearchBar';
 import List from './List';
 
-export default class App extends Component {
-  render() {
-    return (
-      <>
-        <SearchBar />
-        <div />
-        <div />
-        <List />
-      </>
-    );
-  }
-}
+const App = () => {
+  return (
+    <>
+      <SearchBar />
+      <div />
+      <div />
+      <List />
+    </>
+  );
+};
+
+export default App;

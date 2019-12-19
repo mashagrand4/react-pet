@@ -1,6 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Input } from './common/Input';
 
-export const SearchInput = ({ updateField, value }) => {
-  return <Input placeholder="Search.." inputValue={value} onChangeHandler={value => updateField(value)} />;
+const SearchInput = ({ updateField }) => {
+  return (
+    <Input
+      placeholder="Search.."
+      onChangeHandler={value => updateField(value)}
+    />
+  );
 };
+
+SearchInput.propTypes = {
+  updateField: PropTypes.func,
+};
+
+SearchInput.defaultProps = {
+  updateField: null,
+};
+
+export default SearchInput;

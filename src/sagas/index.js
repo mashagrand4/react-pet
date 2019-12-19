@@ -4,7 +4,6 @@ import { updateList } from '../actions/search';
 import {FETCH_MORE_VIDEO, FETCH_VIDEO} from '../constants/actionTypes';
 
 function* fetchMoreVideoAsync(action) {
-  console.log('sagas', action);
   try {
     const { items, nextPageToken } = yield call(YoutubeApi.searchVideo, action.payload);
     let ids = items.filter(item => item.kind === 'youtube#video');
@@ -23,7 +22,6 @@ function* fetchMoreVideoAsync(action) {
 }
 
 function* fetchVideoAsync(action) {
-  console.log('sagas', action);
   try {
     const { items, nextPageToken } = yield call(YoutubeApi.searchVideo, action.payload);
     let ids = items.filter(item => item.kind === 'youtube#video');
@@ -35,8 +33,8 @@ function* fetchVideoAsync(action) {
       ...itemsStatistics.find(itemStatistics => itemStatistics.id === item.id && itemStatistics),
       ...item,
     }));
-    yield put({type: 'ADD_VIDEO', payload: {list: itemsWithStatistics, nextPageToken: nextPageToken}});
-    //yield put(updateList(itemsWithStatistics, nextPageToken));
+    yield put({type: 'ADD_VIDEO', payload: {list: itemsWithStatistics, nextPageToken}});
+    // yield put(updateList(itemsWithStatistics, nextPageToken));
   } catch (e) {
     yield put(updateList([], ''));
   }
