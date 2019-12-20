@@ -4,34 +4,36 @@ import PropTypes from 'prop-types';
 
 const VideoItem = props => {
   const { video } = props;
-  const href = `https://www.youtube.com/watch?v=${video.id}`;
+  const { id, image, title, description, publishedAt, statistics } = video;
+  const { viewCount, likeCount, dislikeCount, favoriteCount, commentCount } = statistics;
+  const href = `https://www.youtube.com/watch?v=${id}`;
   return (
     <ItemWrapper>
       <a href={href} target="_blank" rel="noopener noreferrer">
-        <ItemPicture src={video.image.url} />
+        <ItemPicture src={image.url} />
       </a>
-      <div>{video.title}</div>
-      <div>{video.description}</div>
-      <div>{video.publishedAt}</div>
+      <div>{title}</div>
+      <div>{description}</div>
+      <div>{publishedAt}</div>
       <div>
         VIEW:
-        {video.statistics.viewCount}
+        {viewCount}
       </div>
       <div>
         LIKES:
-        {video.statistics.likeCount}
+        {likeCount}
       </div>
       <div>
         DISLIKES:
-        {video.statistics.dislikeCount}
+        {dislikeCount}
       </div>
       <div>
         FAVOURITES:
-        {video.statistics.favoriteCount}
+        {favoriteCount}
       </div>
       <div>
         COMMENTS:
-        {video.statistics.commentCount}
+        {commentCount}
       </div>
     </ItemWrapper>
   );

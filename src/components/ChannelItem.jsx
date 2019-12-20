@@ -3,15 +3,16 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const ChannelItem = ({channel}) => {
-  const href = `https://www.youtube.com/channel/${channel.id}`;
+  const {id, image, title, description, publishedAt} = channel;
+  const href = `https://www.youtube.com/channel/${id}`;
   return (
     <ItemWrapper>
       <a href={href} target="_blank" rel="noopener noreferrer">
-        <ItemPicture src={channel.image.url} />
+        <ItemPicture src={image.url} />
       </a>
-      <div>{channel.title}</div>
-      <div>{channel.description}</div>
-      <div>{channel.publishedAt}</div>
+      <div>{title}</div>
+      <div>{description}</div>
+      <div>{publishedAt}</div>
     </ItemWrapper>
   );
 };

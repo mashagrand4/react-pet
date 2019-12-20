@@ -3,15 +3,16 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const PlaylistItem = ({playlist}) => {
-  const href = `https://www.youtube.com/channel/${playlist.id}`;
+  const {id, image, title, description, publishedAt} = playlist;
+  const href = `https://www.youtube.com/channel/${id}`;
   return (
     <ItemWrapper>
       <a href={href} target="_blank" rel="noopener noreferrer">
-        <ItemPicture src={playlist.image.url} />
+        <ItemPicture src={image.url} />
       </a>
-      <div>{playlist.title}</div>
-      <div>{playlist.description}</div>
-      <div>{playlist.publishedAt}</div>
+      <div>{title}</div>
+      <div>{description}</div>
+      <div>{publishedAt}</div>
     </ItemWrapper>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
-import SearchBar from './SearchBar';
-import List from './List';
+import SearchBar from '../containers/SearchBar';
+import List from '../containers/List';
 
 const App = () => {
   return (

@@ -1,39 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { bindActionCreators } from 'redux';
 import connect from 'react-redux/es/connect/connect';
 import PropTypes from "prop-types";
 import ENTER_KEY from '../constants/commonTypes';
-import SearchButton from './SearchButton';
-import SearchInput from './SearchInput';
+import SearchButton from '../components/SearchButton';
+import SearchInput from '../components/SearchInput';
 import * as actions from '../actions/search';
 
-class SearchBar extends Component {
-  fetchVideoHandler = () => {
-    const { fetchItems, value, nextPageToken } = this.props;
+const SearchBar = props => {
+  const { fetchItems, value, nextPageToken, updateSearchQuery } = props;
+
+  const fetchVideoHandler = () => {
     fetchItems(value, nextPageToken);
   };
 
-  updateField = (event) => {
-    const { updateSearchQuery } = this.props;
+  const updateField = event => {
     updateSearchQuery(event.target.value);
   };
 
-  onKeyPressHandler = (event) => {
+  const onKeyPressHandler = event => {
     if (event.key === ENTER_KEY) {
-      this.fetchVideoHandler();
+      fetchVideoHandler();
     }
   };
 
-  render() {
-    return (
-      <SearchField onKeyPress={this.onKeyPressHandler}>
-        <SearchInput updateField={this.updateField} />
-        <SearchButton fetchVideo={this.fetchVideoHandler} />
-      </SearchField>
-    );
-  }
-}
+  return (
+    <SearchField onKeyPress={onKeyPressHandler}>
+      <SearchInput updateField={updateField} />
+      <SearchButton fetchVideo={fetchVideoHandler} />
+    </SearchField>
+  );
+};
 
 SearchBar.propTypes = {
   value: PropTypes.string,
