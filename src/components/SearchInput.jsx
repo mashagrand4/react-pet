@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Input } from './common/Input';
 
 const SearchInput = ({ updateField }) => {
-  return <Input placeholder="Search.." onChangeHandler={value => updateField(value)} />;
+  return <Input placeholder="Search.." onChangeHandler={updateField} />;
 };
 
 SearchInput.propTypes = {

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 
 export const Button = ({ name, onClickHandler }) => {
-  return <ButtonField onClick={e => onClickHandler(e.target.value)}>{name}</ButtonField>;
+  return <ButtonField onClick={onClickHandler}>{name}</ButtonField>;
 };
 
 const ButtonField = styled.button`

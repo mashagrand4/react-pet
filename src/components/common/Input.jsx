@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const Input = ({ placeholder, onChangeHandler, inputValue }) => {
-  return <InputField placeholder={placeholder} value={inputValue} onChange={e => onChangeHandler(e.target.value)} />;
+export const Input = ({ placeholder, onChangeHandler }) => {
+  return <InputField placeholder={placeholder} onChange={onChangeHandler} />;
 };
 
 const InputField = styled.input`

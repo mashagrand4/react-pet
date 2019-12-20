@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { bindActionCreators } from 'redux';
 import connect from 'react-redux/es/connect/connect';
 import PropTypes from "prop-types";
+import ENTER_KEY from '../constants/commonTypes';
 import SearchButton from './SearchButton';
 import SearchInput from './SearchInput';
 import * as actions from '../actions/search';
@@ -13,21 +14,21 @@ class SearchBar extends Component {
     fetchItems(value, nextPageToken);
   };
 
-  updateField(value) {
+  updateField = (event) => {
     const { updateSearchQuery } = this.props;
-    updateSearchQuery(value);
-  }
+    updateSearchQuery(event.target.value);
+  };
+
+  onKeyPressHandler = (event) => {
+    if (event.key === ENTER_KEY) {
+      this.fetchVideoHandler();
+    }
+  };
 
   render() {
     return (
-      <SearchField
-        onKeyPress={event => {
-          if (event.key === 'Enter') {
-            this.fetchVideoHandler();
-          }
-        }}
-      >
-        <SearchInput updateField={value => this.updateField(value)} />
+      <SearchField onKeyPress={this.onKeyPressHandler}>
+        <SearchInput updateField={this.updateField} />
         <SearchButton fetchVideo={this.fetchVideoHandler} />
       </SearchField>
     );
