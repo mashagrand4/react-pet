@@ -23,7 +23,7 @@ function* fetchMoreVideoAsync(action) {
 
 function* fetchVideoAsync(action) {
   try {
-    const { items, nextPageToken } = yield call(YoutubeApi.searchVideo, action.payload);
+    const { items, nextPageToken } = yield call(YoutubeApi.loadVideo, action.payload);
     let ids = items.filter(item => item.kind === 'youtube#video');
     ids = ids.map(item => {
       return item.id;

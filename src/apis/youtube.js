@@ -45,6 +45,24 @@ export default class YoutubeApi {
     }
   }
 
+  static async loadVideo({ value }) {
+    try {
+      const result = await axios.get('/search', {
+        baseURL: 'https://www.googleapis.com/youtube/v3',
+        params: {
+          ...params,
+          q: value,
+        },
+      });
+      return {
+        items: getSearchDataMapping(result.data.items),
+        nextPageToken: result.data.nextPageToken,
+      };
+    } catch (error) {
+      return null;
+    }
+  }
+
   static async fetchVideoRating({ ids }) {
     try {
       const result = await axios.get('/videos', {

@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import * as actions from '../actions/search';
 import VideoItem from './VideoItem';
 import ChannelItem from './ChannelItem';
+import PlaylistItem from "./PlaylistItem";
 
 class List extends Component {
   handleVisit = () => {
@@ -22,6 +23,8 @@ class List extends Component {
           return <VideoItem key={item.id} video={item} />;
         case 'youtube#channel':
           return <ChannelItem key={item.id} channel={item} />;
+        case 'youtube#playlist':
+          return <PlaylistItem key={item.id} playlist={item} />;
         default:
           return null;
       }

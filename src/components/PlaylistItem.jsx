@@ -2,28 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const VideoItem = (props) => {
-  const { video } = props;
-  const href = `https://www.youtube.com/watch?v=${video.id}`;
+const PlaylistItem = ({playlist}) => {
+  const href = `https://www.youtube.com/channel/${playlist.id}`;
   return (
     <ItemWrapper>
       <a href={href} target="_blank" rel="noopener noreferrer">
-        <ItemPicture src={video.image.url} />
+        <ItemPicture src={playlist.image.url} />
       </a>
-      <div>{video.title}</div>
-      <div>{video.description}</div>
-      <div>{video.publishedAt}</div>
-      <div>{video.statistics.viewCount}</div>
-      <div>{video.statistics.likeCount}</div>
-      <div>{video.statistics.dislikeCount}</div>
-      <div>{video.statistics.favoriteCount}</div>
-      <div>{video.statistics.commentCount}</div>
+      <div>{playlist.title}</div>
+      <div>{playlist.description}</div>
+      <div>{playlist.publishedAt}</div>
     </ItemWrapper>
   );
 };
 
-VideoItem.propTypes = {
-  video: PropTypes.shape({
+PlaylistItem.propTypes = {
+  playlist: PropTypes.shape({
     id: PropTypes.string,
     image: PropTypes.shape({
       url: PropTypes.string,
@@ -31,18 +25,11 @@ VideoItem.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     publishedAt: PropTypes.string,
-    statistics: PropTypes.shape({
-      viewCount: PropTypes.string,
-      likeCount: PropTypes.string,
-      dislikeCount: PropTypes.string,
-      favoriteCount: PropTypes.string,
-      commentCount: PropTypes.string,
-    }),
   }),
 };
 
-VideoItem.defaultProps = {
-  video: {},
+PlaylistItem.defaultProps = {
+  playlist: {},
 };
 
 const ItemWrapper = styled.div`
@@ -64,10 +51,11 @@ const ItemWrapper = styled.div`
 `;
 
 const ItemPicture = styled.img`
-  width: 80%;
+  width: 60%;
   display: block;
   margin: 0 auto;
+  border-radius: 50%;
   padding: 1rem;
 `;
 
-export default VideoItem;
+export default PlaylistItem;

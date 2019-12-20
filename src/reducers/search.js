@@ -31,6 +31,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         list: state.list.concat(action.payload.list),
+        nextPageToken: action.payload.nextPageToken,
       };
     case UPDATE_SEARCH_QUERY:
       return {
