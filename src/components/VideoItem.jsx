@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const VideoItem = (props) => {
+const VideoItem = props => {
   const { video } = props;
   const href = `https://www.youtube.com/watch?v=${video.id}`;
   return (
@@ -13,11 +13,26 @@ const VideoItem = (props) => {
       <div>{video.title}</div>
       <div>{video.description}</div>
       <div>{video.publishedAt}</div>
-      <div>{video.statistics.viewCount}</div>
-      <div>{video.statistics.likeCount}</div>
-      <div>{video.statistics.dislikeCount}</div>
-      <div>{video.statistics.favoriteCount}</div>
-      <div>{video.statistics.commentCount}</div>
+      <div>
+        VIEW:
+        {video.statistics.viewCount}
+      </div>
+      <div>
+        LIKES:
+        {video.statistics.likeCount}
+      </div>
+      <div>
+        DISLIKES:
+        {video.statistics.dislikeCount}
+      </div>
+      <div>
+        FAVOURITES:
+        {video.statistics.favoriteCount}
+      </div>
+      <div>
+        COMMENTS:
+        {video.statistics.commentCount}
+      </div>
     </ItemWrapper>
   );
 };

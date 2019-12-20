@@ -4,6 +4,7 @@ import InfiniteLoader from 'react-infinite-loader';
 import connect from 'react-redux/es/connect/connect';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import {VIDEO, CHANNEL, PLAYLIST} from '../constants/resultTypes';
 import * as actions from '../actions/search';
 import VideoItem from './VideoItem';
 import ChannelItem from './ChannelItem';
@@ -19,11 +20,11 @@ class List extends Component {
     const { list } = this.props;
     const items = list.map(item => {
       switch (item.kind) {
-        case 'youtube#video':
+        case VIDEO:
           return <VideoItem key={item.id} video={item} />;
-        case 'youtube#channel':
+        case CHANNEL:
           return <ChannelItem key={item.id} channel={item} />;
-        case 'youtube#playlist':
+        case PLAYLIST:
           return <PlaylistItem key={item.id} playlist={item} />;
         default:
           return null;

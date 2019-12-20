@@ -6,6 +6,8 @@ const params = {
   key: 'AIzaSyD8a-SC61GaTYfoWeq59uyeQRosGubgKHg',
 };
 
+const baseURL = 'https://www.googleapis.com/youtube/v3';
+
 const getSearchDataMapping = data => {
   return data.map(item => {
     return {
@@ -29,7 +31,7 @@ export default class YoutubeApi {
   static async searchVideo({ value, nextPageToken }) {
     try {
       const result = await axios.get('/search', {
-        baseURL: 'https://www.googleapis.com/youtube/v3',
+        baseURL,
         params: {
           ...params,
           q: value,
@@ -48,7 +50,7 @@ export default class YoutubeApi {
   static async loadVideo({ value }) {
     try {
       const result = await axios.get('/search', {
-        baseURL: 'https://www.googleapis.com/youtube/v3',
+        baseURL,
         params: {
           ...params,
           q: value,
@@ -66,7 +68,7 @@ export default class YoutubeApi {
   static async fetchVideoRating({ ids }) {
     try {
       const result = await axios.get('/videos', {
-        baseURL: 'https://www.googleapis.com/youtube/v3',
+        baseURL,
         params: {
           part: 'statistics',
           key: params.key,

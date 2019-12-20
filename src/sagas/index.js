@@ -2,10 +2,11 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import YoutubeApi from '../apis/youtube';
 import {loadVideo, updateList} from '../actions/search';
 import {FETCH_MORE_VIDEO, FETCH_VIDEO} from '../constants/actionTypes';
+import {VIDEO} from '../constants/resultTypes';
 
 function* fetchHelper(payload) {
   const { items, nextPageToken } = yield call(YoutubeApi.searchVideo, payload);
-  const ids = items.filter(item => item.kind === 'youtube#video').map(item => {
+  const ids = items.filter(item => item.kind === VIDEO).map(item => {
     return item.id;
   });
   const itemsStatistics = yield call(YoutubeApi.fetchVideoRating, { ids });
