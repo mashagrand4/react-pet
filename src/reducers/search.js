@@ -3,6 +3,7 @@ import {
   FETCH_VIDEO,
   UPDATE_LIST,
   UPDATE_SEARCH_QUERY,
+  ADD_VIDEO
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -21,7 +22,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
       };
-    case 'ADD_VIDEO':
+    case ADD_VIDEO:
       return {
         ...state,
         list: action.payload.list,

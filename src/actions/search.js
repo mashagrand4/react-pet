@@ -2,11 +2,23 @@ import {
   FETCH_VIDEO,
   UPDATE_SEARCH_QUERY,
   UPDATE_LIST,
-  FETCH_MORE_VIDEO } from '../constants/actionTypes';
+  FETCH_MORE_VIDEO,
+  ADD_VIDEO
+} from '../constants/actionTypes';
 
 export const updateList = (list, nextPageToken) => {
   return {
     type: UPDATE_LIST,
+    payload: {
+      list,
+      nextPageToken,
+    },
+  };
+};
+
+export const loadVideo = (list, nextPageToken) => {
+  return {
+    type: ADD_VIDEO,
     payload: {
       list,
       nextPageToken,
